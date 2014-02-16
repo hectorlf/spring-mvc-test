@@ -7,10 +7,8 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns={"/index.html"},loadOnStartup=1)
 public class WelcomeFileRedirecterServlet implements Servlet {
 
 	private ServletConfig servletConfig;
@@ -39,7 +37,7 @@ public class WelcomeFileRedirecterServlet implements Servlet {
 		if (!(arg1 instanceof HttpServletResponse)) throw new ServletException("Se ha recibido un ServletResponse que no es http, y no se puede responder la petición.");
 		HttpServletResponse response = (HttpServletResponse)arg1;
 		response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
-		response.sendRedirect("/index.page");
+		response.sendRedirect(arg0.getServletContext().getContextPath() + "/index.page");
 	}
 
 }

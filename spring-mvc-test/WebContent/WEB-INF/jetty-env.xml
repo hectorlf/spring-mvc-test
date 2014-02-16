@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+	<New id="testds" class="org.eclipse.jetty.plus.jndi.Resource">
+		<Arg></Arg>
+		<Arg>java:comp/env/jdbc/testds</Arg>
+		<Arg>
+			<New class="org.hsqldb.jdbc.JDBCDataSource">
+				<Set name="database">jdbc:hsqldb:mem:mymemdb</Set>
+				<Set name="user">SA</Set>
+				<Set name="password">SA</Set>
+			</New>
+		</Arg>
+	</New>
+</Configure>
