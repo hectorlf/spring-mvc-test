@@ -13,12 +13,12 @@
 	<classpathentry kind="lib" path="lib/spring-core-4.0.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/spring-beans-4.0.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="D:/dev/git/spring-mvc-test/spring-mvc-test/lib/javax.inject-1.jar"/>
-	<classpathentry kind="lib" path="D:/dev/git/spring-mvc-test/spring-mvc-test/lib/slf4j-api-1.7.5.jar"/>
-	<classpathentry kind="lib" path="D:/dev/git/spring-mvc-test/spring-mvc-test/lib/thymeleaf-spring4-2.1.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="D:/dev/git/spring-mvc-test/spring-mvc-test/lib/validation-api-1.0.0.GA.jar"/>
-	<classpathentry kind="lib" path="D:/dev/git/spring-mvc-test/spring-mvc-test/lib/javax.persistence-2.1.0.jar"/>
-	<classpathentry kind="lib" path="D:/dev/git/spring-mvc-test/spring-mvc-test/lib/spring-tx-4.0.1.RELEASE.jar"/>
-	<classpathentry kind="lib" path="D:/dev/git/spring-mvc-test/spring-mvc-test/lib/thymeleaf-2.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/javax.inject-1.jar"/>
+	<classpathentry kind="lib" path="lib/javax.persistence-2.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.7.5.jar"/>
+	<classpathentry kind="lib" path="lib/spring-tx-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/thymeleaf-2.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/thymeleaf-spring4-2.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/validation-api-1.0.0.GA.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
