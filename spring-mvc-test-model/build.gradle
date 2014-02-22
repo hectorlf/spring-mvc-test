@@ -1,0 +1,33 @@
+buildscript {
+   repositories {
+	   mavenCentral()
+   }
+   dependencies {
+	   classpath "org.eclipse.persistence:org.eclipse.persistence.jpa:2.5.1"
+   }
+}
+
+apply plugin: 'java'
+
+repositories {
+    flatDir { dirs 'lib' }
+    mavenCentral()
+}
+
+dependencies {
+    compile("javax.persistence:javax.persistence:2.1.0")
+    compile("javax.validation:validation-api:1.0.0.GA")
+}
+
+task eclipselinkWeaver {
+	dependsOn compileJava, processResources
+}
+eclipselinkWeaver << {
+	def sourceDir = compileJava.destinationDir
+	def persistenceXmlDir = processResources.destinationDir
+	def weaver = new org.eclipse.persistence.tools.weaving.jpa.StaticWeaveProcessor(sourceDir, sourceDir)
+	weaver.setPersistenceInfo(persistenceXmlDir)
+	weaver.setLogLevel(3)
+	weaver.performWeaving()
+}
+classes.dependsOn eclipselinkWeaver
