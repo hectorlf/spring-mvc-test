@@ -1,79 +1,14 @@
-buildscript {
-   repositories {
-	   mavenCentral()
-	   jcenter()
-   }
-   dependencies {
-	   classpath "org.hsqldb:hsqldb:2.3.0"
-	   classpath "org.jboss.arquillian.gradle:arquillian-gradle-plugin:0.1"
-	   classpath "org.eclipse.persistence:org.eclipse.persistence.jpa:2.5.1"
-	   classpath "org.apache.geronimo.specs:geronimo-servlet_3.0_spec:1.0"
-   }
-}
-
-apply plugin: 'war'
-apply plugin: 'arquillian'
-
-repositories {
-    flatDir { dirs 'lib' }
-    mavenCentral()
-}
-
-dependencies {
-    providedCompile("commons-logging:commons-logging:1.1.1")
-    providedCompile("org.apache.geronimo.specs:geronimo-servlet_3.0_spec:1.0")
-
-    compile("javax.inject:javax.inject:1")
-    compile("javax.validation:validation-api:1.0.0.GA")
-    compile("org.slf4j:slf4j-api:1.7.5")
-    compile("org.springframework:spring-webmvc:4.0.1.RELEASE")
-    compile("org.springframework:spring-tx:4.0.1.RELEASE")
-    compile("org.springframework.security:spring-security-web:3.2.0.RELEASE")
-    compile("org.springframework.security:spring-security-config:3.2.0.RELEASE")
-    compile("org.thymeleaf:thymeleaf-spring4:2.1.2.RELEASE")
-    compile("org.eclipse.persistence:org.eclipse.persistence.jpa:2.5.1")
-    compile("org.springframework:spring-orm:4.0.1.RELEASE")
-    
-    runtime("org.slf4j:jcl-over-slf4j:1.7.5")
-    runtime("ch.qos.logback:logback-classic:1.0.13")
-    runtime("org.apache.bval:bval-jsr303:0.5")
-    runtime("org.aspectj:aspectjweaver:1.7.4")
-
-	providedRuntime "org.hsqldb:hsqldb:2.3.0"
+subprojects {
+    apply plugin: 'java'
+    repositories {
+        flatDir { dirs 'lib' }
+        mavenCentral()
+    }
 }
 
 
-classes << {
-	println 'Weaving entity objects in place!'
-	
-	def sourceDir = compileJava.destinationDir
-	def persistenceXmlDir = processResources.destinationDir
-	def weaver = new org.eclipse.persistence.tools.weaving.jpa.StaticWeaveProcessor(sourceDir, sourceDir)
-	weaver.setPersistenceInfo(persistenceXmlDir)
-//	weaver.setLogLevel(3)
-	weaver.performWeaving()
-}
-
-war {
-	from 'WebContent'
-    webInf { from 'WEB-INF' } // adds a file-set to the WEB-INF dir.
-}
-
-
-arquillian {
-    debug = true
-
-    containers {
-        jetty {
-            version = '8'
-            type = 'embedded'
-            config = ['bindHttpPort': 8080, 'bindAddress': '127.0.0.1', 'jettyPlus': true]
-
-            dependencies {
-                adapter 'org.jboss.arquillian.container:arquillian-jetty-embedded-7:1.0.0.CR2'
-                container 'org.eclipse.jetty:jetty-webapp:8.1.11.v20130520'
-                container group: 'org.eclipse.jetty', name: 'jetty-plus', version: '8.1.11.v20130520'
-            }
-        }
+project(':spring-mvc-test') {
+    dependencies {
+        compile project(':spring-mvc-test-model')
     }
 }

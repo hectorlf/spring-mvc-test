@@ -30,14 +30,15 @@ public class IndexController {
 	}
 	
 	
-	@RequestMapping(value="/index.page")
+	@RequestMapping(value="/index.action")
 	public String welcome(ModelMap model) {
 		logger.debug("Entrando a IndexController.welcome()");
 		model.addAttribute("messages", businessService.getAllMessages());
+		logger.debug("Retornando vista a presentar");
 		return "/index.html";
 	}
 
-	@RequestMapping(value="/salute.page")
+	@RequestMapping(value="/salute.action")
 	public String salute(@Valid @ModelAttribute("message") Message message, BindingResult bindingResult, ModelMap model) {
 		logger.debug("Entrando a IndexController.salute()");
 		if (bindingResult.hasErrors()) {

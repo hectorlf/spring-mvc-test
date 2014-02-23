@@ -7,13 +7,6 @@ buildscript {
    }
 }
 
-apply plugin: 'java'
-
-repositories {
-    flatDir { dirs 'lib' }
-    mavenCentral()
-}
-
 dependencies {
     compile("javax.persistence:javax.persistence:2.1.0")
     compile("javax.validation:validation-api:1.0.0.GA")

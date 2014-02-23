@@ -18,12 +18,21 @@
 
 
 	<filter>
+		<filter-name>transaction-filter</filter-name>
+		<filter-class>prueba.integration.TransactionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>transaction-filter</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+
+	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>*.action</url-pattern>
 	</filter-mapping>
 
 
@@ -38,7 +47,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>spring-dispatcher</servlet-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>*.action</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
