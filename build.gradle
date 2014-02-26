@@ -6,9 +6,8 @@ subprojects {
     }
 }
 
-
 project(':spring-mvc-test') {
     dependencies {
-        compile project(':spring-mvc-test-model')
+        compile project(path: ':spring-mvc-test-model', configuration: 'woven')
     }
 }
