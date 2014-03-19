@@ -8,19 +8,18 @@
         http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security.xsd">
 
+	<debug/>
+	
 	<http>
 		<intercept-url pattern="/secure.page" access="ROLE_ADMIN"/>
-		<form-login />
-		<logout logout-url="/logout.page" logout-success-url="/index.page"/>
+		<form-login login-page="/login-form.page" login-processing-url="/login.action" username-parameter="username" password-parameter="password" authentication-failure-url="/login-form.page?login_error"/>
+		<logout logout-url="/logout.action" logout-success-url="/index.page"/>
 		<access-denied-handler error-page="/unauthorized.page"/>
 	</http>
 
 	<authentication-manager>
 		<authentication-provider>
-			<user-service>
-				<user name="admin" password="admin" authorities="ROLE_USER, ROLE_ADMIN" />
-				<user name="user" password="user" authorities="ROLE_USER" />
-			</user-service>
+			<jdbc-user-service data-source-ref="dataSource"/>
 		</authentication-provider>
 	</authentication-manager>
 

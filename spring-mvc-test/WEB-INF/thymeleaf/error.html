@@ -1,10 +1,18 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Error</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+	<form action="#" th:action="@{/salute.page}" th:object="${message}">
     <p>Error!</p>
+	<ul>
+	<li th:each="e : ${#fields.detailedErrors()}" th:class="${e.global}? globalerr : fielderr">
+		<span th:text="${e.global}? '*' : ${e.fieldName}">The field name</span> |
+		<span th:text="${e.message}">The error message</span>
+	</li>
+	</ul>
+	</form>
 </body>
 </html>

@@ -4,7 +4,7 @@
 	<meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Pruebica</title>
+    <title>Mensajes extraídos de base de datos</title>
     
     <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
@@ -16,11 +16,9 @@
 	<script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-	<h1>Opciones disponibles</h1>
+	<h1>Mensajes extraídos mediante jpa</h1>
     <ul>
-    	<li>Recoger valores de base de datos: <a th:href="@{/db.page}">db.page</a></li>
-    	<li>Validar parámetros de entrada (el parámetro es obligatorio): <a th:href="@{/salute.page?text=mundo}">salute.page?text=mundo</a></li>
-    	<li>URLs protegidas (usuario/pw -&gt; pepe/pepe y paco/paco): <a th:href="@{/secure.page}">secure.page</a></li>
+    	<li th:each="message : ${messages}" th:text="${message.text}"></li>
     </ul>
 </body>
 </html>
